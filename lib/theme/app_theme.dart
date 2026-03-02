@@ -40,6 +40,29 @@ class AppTheme {
         ),
       ),
 
+      // AppBar configurada com tema claro
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.white,
+        elevation: 0,
+      ),
+
+      // Input decorations
+      inputDecorationTheme: InputDecorationTheme(
+        fillColor: AppColors.white.withValues(alpha: 0.1),
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.white),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.white70),
+        ),
+        labelStyle: const TextStyle(color: AppColors.white70),
+        hintStyle: const TextStyle(color: AppColors.white70),
+      ),
+
       // 🔤 Texto padrão
       textTheme: const TextTheme(
         bodyMedium: TextStyle(color: AppColors.white),
@@ -106,11 +129,27 @@ class AppTheme {
         ),
       ),
 
-      // AppBar personalizada
+      // AppBar personalizada para tema escuro
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.darkSurface,
         foregroundColor: AppColors.lightText,
         elevation: 0,
+      ),
+
+      // Input decorations para tema escuro
+      inputDecorationTheme: InputDecorationTheme(
+        fillColor: AppColors.darkCard,
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
+        ),
+        labelStyle: const TextStyle(color: AppColors.darkGreyText),
+        hintStyle: const TextStyle(color: AppColors.darkGreyText),
       ),
 
       // 🔤 Texto padrão
@@ -138,9 +177,7 @@ class AppTheme {
       ),
 
       // Ícones
-      iconTheme: const IconThemeData(
-        color: AppColors.lightText,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.lightText),
     );
   }
 

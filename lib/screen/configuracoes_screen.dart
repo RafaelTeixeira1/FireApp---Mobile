@@ -11,34 +11,30 @@ class ConfiguracoesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Configurações'),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          const SizedBox(height: 16),
-          
-          // Seção de Aparência
-          _buildSectionHeader('Aparência'),
-          
-          // Toggle de Dark Mode
-          Consumer<ThemeProvider>(
-            builder: (context, themeProvider, child) {
-              final isDark = themeProvider.isDarkMode;
-              
-              return SwitchListTile(
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, _) {
+        final isDark = themeProvider.isDarkMode;
+        
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Configurações'),
+            centerTitle: true,
+          ),
+          body: ListView(
+            children: [
+              const SizedBox(height: 16),
+
+              // Seção de Aparência
+              _buildSectionHeader('Aparência', isDark),
+
+              // Toggle de Dark Mode
+              SwitchListTile(
                 title: const Text(
                   'Tema Escuro',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 subtitle: Text(
                   isDark ? 'Ativado' : 'Desativado',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark ? AppColors.darkGreyText : AppColors.white70,
-                  ),
                 ),
                 value: isDark,
                 onChanged: (value) {
@@ -46,46 +42,47 @@ class ConfiguracoesScreen extends StatelessWidget {
                 },
                 activeThumbColor: AppColors.primary,
                 activeTrackColor: AppColors.primary.withValues(alpha: 0.35),
+                inactiveThumbColor: Colors.grey,
+                inactiveTrackColor: Colors.grey.withValues(alpha: 0.3),
                 secondary: Icon(
                   isDark ? Icons.dark_mode : Icons.light_mode,
-                  color: isDark ? AppColors.lightText : AppColors.white,
                 ),
-              );
-            },
+              ),
+
+              const Divider(),
+
+              // Informações do App
+              _buildSectionHeader('Sobre', isDark),
+
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: const Text('Versão do App'),
+                subtitle: const Text('1.0.0'),
+                onTap: () {},
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.local_fire_department),
+                title: const Text('FireApp Mobile'),
+                subtitle: const Text('Sistema de Monitoramento de Incêndios'),
+                onTap: () {},
+              ),
+            ],
           ),
-          
-          const Divider(),
-          
-          // Informações do App
-          _buildSectionHeader('Sobre'),
-          
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text('Versão do App'),
-            subtitle: const Text('1.0.0'),
-            onTap: () {},
-          ),
-          
-          ListTile(
-            leading: const Icon(Icons.local_fire_department),
-            title: const Text('FireApp Mobile'),
-            subtitle: const Text('Sistema de Monitoramento de Incêndios'),
-            onTap: () {},
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildSectionHeader(String title) {
+  Widget _buildSectionHeader(String title, bool isDark) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Text(
         title.toUpperCase(),
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: AppColors.grey,
+          color: isDark ? AppColors.darkGreyText : AppColors.grey,
           letterSpacing: 1.2,
         ),
       ),
