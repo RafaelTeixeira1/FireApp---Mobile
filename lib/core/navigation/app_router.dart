@@ -13,6 +13,7 @@ import '../../screen/cadastro_incendio_screen.dart';
 import '../../screen/adicionar_mapa_screen.dart';
 import '../../screen/informacoes_screen.dart';
 import '../../screen/ajuda_comentarios_screen.dart';
+import '../../screen/configuracoes_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -53,6 +54,9 @@ class AppRouter {
 
       case AppRoutes.ajudaComentarios:
         return MaterialPageRoute(builder: (_) => AjudaComentariosScreen());
+      case AppRoutes.configuracoes:
+        return MaterialPageRoute(builder: (_) => const ConfiguracoesScreen());
+
 
       default:
         return MaterialPageRoute(

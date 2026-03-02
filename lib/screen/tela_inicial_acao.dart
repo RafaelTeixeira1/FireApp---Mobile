@@ -82,7 +82,18 @@ class TelaInicialAcao extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              /// BOTÃO 5 — Sair
+              /// BOTÃO 5 — Configurações
+              _MenuCard(
+                icon: Icons.settings_outlined,
+                title: "Configurações",
+                subtitle: "Altere preferências, como tema escuro.",
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.configuracoes),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// BOTÃO 6 — Sair
               _MenuCard(
                 icon: Icons.logout,
                 title: "Sair",

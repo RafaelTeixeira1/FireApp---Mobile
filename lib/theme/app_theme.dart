@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTheme {
-  static ThemeData get theme {
+  /// Tema claro (padrão)
+  static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: false,
+      brightness: Brightness.light,
 
       // 🖤 Define a cor de fundo principal do app
       scaffoldBackgroundColor: AppColors.primary,
@@ -63,4 +65,85 @@ class AppTheme {
       ),
     );
   }
+
+  /// Tema escuro
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: false,
+      brightness: Brightness.dark,
+
+      // 🌙 Cores de fundo escuras
+      scaffoldBackgroundColor: AppColors.darkBackground,
+      cardColor: AppColors.darkCard,
+      canvasColor: AppColors.darkSurface,
+
+      // 🔠 Fonte global do app
+      fontFamily: 'Poppins',
+
+      // Desabilita o splash azul padrão do Android
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+
+      // 🔳 Estilo padrão dos botões do app
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+      ),
+
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: AppColors.darkBorder),
+          foregroundColor: AppColors.lightText,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+      ),
+
+      // AppBar personalizada
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.darkSurface,
+        foregroundColor: AppColors.lightText,
+        elevation: 0,
+      ),
+
+      // 🔤 Texto padrão
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: AppColors.lightText),
+        bodyLarge: TextStyle(color: AppColors.lightText),
+        labelLarge: TextStyle(color: AppColors.lightText),
+
+        // Titulos
+        titleLarge: TextStyle(
+          color: AppColors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
+        titleMedium: TextStyle(
+          color: AppColors.white,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+        ),
+        titleSmall: TextStyle(
+          color: AppColors.lightText,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+
+      // Ícones
+      iconTheme: const IconThemeData(
+        color: AppColors.lightText,
+      ),
+    );
+  }
+
+  /// Para manter compatibilidade com código existente
+  static ThemeData get theme => lightTheme;
 }
