@@ -398,7 +398,7 @@ class _CadastroIncendioScreenState extends State<CadastroIncendioScreen> {
     final coordenadasCalculadas = _calcularCoordenadas();
 
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

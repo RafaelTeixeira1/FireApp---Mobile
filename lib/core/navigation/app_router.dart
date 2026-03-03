@@ -57,7 +57,6 @@ class AppRouter {
       case AppRoutes.configuracoes:
         return MaterialPageRoute(builder: (_) => const ConfiguracoesScreen());
 
-
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

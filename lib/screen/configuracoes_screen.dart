@@ -11,70 +11,69 @@ class ConfiguracoesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, _) {
-        final isDark = themeProvider.isDarkMode;
-        
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Configurações'),
-            centerTitle: true,
-          ),
-          body: ListView(
-            children: [
-              const SizedBox(height: 16),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Configurações'), centerTitle: true),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
 
-              // Seção de Aparência
-              _buildSectionHeader('Aparência', isDark),
+            // Seção de Aparência
+            _buildSectionHeader(context, 'Aparência'),
 
-              // Toggle de Dark Mode
-              SwitchListTile(
-                title: const Text(
-                  'Tema Escuro',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  isDark ? 'Ativado' : 'Desativado',
-                ),
-                value: isDark,
-                onChanged: (value) {
-                  themeProvider.toggleTheme();
-                },
-                activeThumbColor: AppColors.primary,
-                activeTrackColor: AppColors.primary.withValues(alpha: 0.35),
-                inactiveThumbColor: Colors.grey,
-                inactiveTrackColor: Colors.grey.withValues(alpha: 0.3),
-                secondary: Icon(
-                  isDark ? Icons.dark_mode : Icons.light_mode,
-                ),
-              ),
+            // Toggle de Dark Mode
+            Consumer<ThemeProvider>(
+              builder: (context, themeProvider, _) {
+                final isDark = themeProvider.isDarkMode;
 
-              const Divider(),
+                return SwitchListTile(
+                  title: const Text(
+                    'Tema Escuro',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  subtitle: Text(isDark ? 'Ativado' : 'Desativado'),
+                  value: isDark,
+                  onChanged: (value) {
+                    themeProvider.toggleTheme();
+                  },
+                  activeThumbColor: AppColors.primary,
+                  activeTrackColor: AppColors.primary.withValues(alpha: 0.35),
+                  inactiveThumbColor: Colors.grey,
+                  inactiveTrackColor: Colors.grey.withValues(alpha: 0.3),
+                  secondary: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+                );
+              },
+            ),
 
-              // Informações do App
-              _buildSectionHeader('Sobre', isDark),
+            const Divider(),
 
-              ListTile(
-                leading: const Icon(Icons.info_outline),
-                title: const Text('Versão do App'),
-                subtitle: const Text('1.0.0'),
-                onTap: () {},
-              ),
+            // Informações do App
+            _buildSectionHeader(context, 'Sobre'),
 
-              ListTile(
-                leading: const Icon(Icons.local_fire_department),
-                title: const Text('FireApp Mobile'),
-                subtitle: const Text('Sistema de Monitoramento de Incêndios'),
-                onTap: () {},
-              ),
-            ],
-          ),
-        );
-      },
+            ListTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('Versão do App'),
+              subtitle: const Text('1.0.0'),
+              onTap: () {},
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.local_fire_department),
+              title: const Text('FireApp Mobile'),
+              subtitle: const Text('Sistema de Monitoramento de Incêndios'),
+              onTap: () {},
+            ),
+
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildSectionHeader(String title, bool isDark) {
+  Widget _buildSectionHeader(BuildContext context, String title) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Text(

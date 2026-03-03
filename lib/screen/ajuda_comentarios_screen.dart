@@ -57,7 +57,7 @@ class _AjudaComentariosScreenState extends State<AjudaComentariosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary, // 🔥 Fundo vermelho
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text("Ajuda e Comentários"),
         centerTitle: true,

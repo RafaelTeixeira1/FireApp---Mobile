@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Persiste a escolha do usuário usando SharedPreferences
 class ThemeProvider with ChangeNotifier {
   static const String _themeKey = 'isDarkMode';
-  
+
   bool _isDarkMode = false;
   bool get isDarkMode => _isDarkMode;
 

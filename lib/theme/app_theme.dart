@@ -7,6 +7,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: false,
       brightness: Brightness.light,
+      primaryColor: AppColors.primary,
 
       // 🖤 Define a cor de fundo principal do app
       scaffoldBackgroundColor: AppColors.primary,
@@ -94,6 +95,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: false,
       brightness: Brightness.dark,
+      primaryColor: const Color(0xFF1A1A2E), // Cor primária escura para temas escuros
 
       // 🌙 Cores de fundo escuras
       scaffoldBackgroundColor: AppColors.darkBackground,

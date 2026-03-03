@@ -10,112 +10,89 @@ class TelaInicialAcao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// BOTÃO VOLTAR
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: 30,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Theme.of(context).iconTheme.color ?? Colors.white,
+                    size: 30,
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 40),
-
-              /// TÍTULO
-              Text("Menu Rápido", style: AppTextStyles.titleMedium),
-
-              const SizedBox(height: 12),
-
-              Text("Escolha uma opção para começar", style: AppTextStyles.body),
-
-              const SizedBox(height: 40),
-
-              /// BOTÃO 1 — Reportar Incêndio
-              _MenuCard(
-                icon: Icons.local_fire_department_outlined,
-                title: "Reportar incêndio",
-                subtitle: "Registre um foco de incêndio no mapa.",
-                onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.cadastroIncendio),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// BOTÃO 2 — Meus Alertas
-              _MenuCard(
-                icon: Icons.warning_amber_outlined,
-                title: "Meus alertas",
-                subtitle: "Acompanhe os alertas enviados.",
-                onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.meusAlertas),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// BOTÃO 3 — Mapa
-              _MenuCard(
-                icon: Icons.map_outlined,
-                title: "Mapa",
-                subtitle: "Veja a sua localização atual.",
-                onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.showLocation),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// BOTÃO 4 — Ajuda e Comentários
-              _MenuCard(
-                icon: Icons.help_outline_rounded,
-                title: "Ajuda e comentários",
-                subtitle: "Tire dúvidas e envie sugestões.",
-                onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.ajudaComentarios),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// BOTÃO 5 — Configurações
-              _MenuCard(
-                icon: Icons.settings_outlined,
-                title: "Configurações",
-                subtitle: "Altere preferências, como tema escuro.",
-                onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.configuracoes),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// BOTÃO 6 — Sair
-              _MenuCard(
-                icon: Icons.logout,
-                title: "Sair",
-                subtitle: "Trocar de conta ou voltar ao login.",
-                onTap: () async {
-                  try {
-                    await Auth().signOut();
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      AppRoutes.loginRegister,
-                      (route) => false,
-                    );
-                  } catch (_) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Nao foi possivel sair agora.'),
-                      ),
-                    );
-                  }
-                },
-              ),
-            ],
+                const SizedBox(height: 40),
+                Text('Menu Rápido', style: AppTextStyles.titleMedium),
+                const SizedBox(height: 12),
+                Text('Escolha uma opção para começar', style: AppTextStyles.body),
+                const SizedBox(height: 40),
+                _MenuCard(
+                  icon: Icons.local_fire_department_outlined,
+                  title: 'Reportar incêndio',
+                  subtitle: 'Registre um foco de incêndio no mapa.',
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppRoutes.cadastroIncendio),
+                ),
+                const SizedBox(height: 20),
+                _MenuCard(
+                  icon: Icons.warning_amber_outlined,
+                  title: 'Meus alertas',
+                  subtitle: 'Acompanhe os alertas enviados.',
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppRoutes.meusAlertas),
+                ),
+                const SizedBox(height: 20),
+                _MenuCard(
+                  icon: Icons.map_outlined,
+                  title: 'Mapa',
+                  subtitle: 'Veja a sua localização atual.',
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppRoutes.showLocation),
+                ),
+                const SizedBox(height: 20),
+                _MenuCard(
+                  icon: Icons.help_outline_rounded,
+                  title: 'Ajuda e comentários',
+                  subtitle: 'Tire dúvidas e envie sugestões.',
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppRoutes.ajudaComentarios),
+                ),
+                const SizedBox(height: 20),
+                _MenuCard(
+                  icon: Icons.settings_outlined,
+                  title: 'Configurações',
+                  subtitle: 'Altere preferências, como tema escuro.',
+                  onTap: () => Navigator.pushNamed(context, AppRoutes.configuracoes),
+                ),
+                const SizedBox(height: 20),
+                _MenuCard(
+                  icon: Icons.logout,
+                  title: 'Sair',
+                  subtitle: 'Trocar de conta ou voltar ao login.',
+                  onTap: () async {
+                    try {
+                      await Auth().signOut();
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        AppRoutes.loginRegister,
+                        (route) => false,
+                      );
+                    } catch (_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Nao foi possivel sair agora.'),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -144,7 +121,9 @@ class _MenuCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkCard
+              : AppColors.white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -157,9 +136,7 @@ class _MenuCard extends StatelessWidget {
               ),
               child: Icon(icon, color: AppColors.primary, size: 30),
             ),
-
             const SizedBox(width: 18),
-
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,20 +144,31 @@ class _MenuCard extends StatelessWidget {
                   Text(
                     title,
                     style: AppTextStyles.bodyBold.copyWith(
-                      color: AppColors.darkText,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.lightText
+                          : AppColors.darkText,
                       fontSize: 17,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: AppTextStyles.small.copyWith(color: Colors.black54),
+                    style: AppTextStyles.small.copyWith(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.darkGreyText
+                          : Colors.black54,
+                    ),
                   ),
                 ],
               ),
             ),
-
-            const Icon(Icons.chevron_right, color: Colors.black45, size: 28),
+            Icon(
+              Icons.chevron_right,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.darkGreyText
+                  : Colors.black45,
+              size: 28,
+            ),
           ],
         ),
       ),

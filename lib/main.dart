@@ -23,29 +23,26 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return ChangeNotifierProvider(
-        create: (_) => ThemeProvider(),
-        child: Consumer<ThemeProvider>(
-          builder: (context, themeProvider, child) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: AppTheme.lightTheme,
-              darkTheme: AppTheme.darkTheme,
-              themeMode: themeProvider.themeMode,
-              initialRoute: AppRoutes.telaInicial,
-              onGenerateRoute: AppRouter.generateRoute,
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('pt', 'BR'),
-                Locale('en', 'US'),
-              ],
-            );
-          },
-        ),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeProvider.themeMode,
+            initialRoute: AppRoutes.telaInicial,
+            onGenerateRoute: AppRouter.generateRoute,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [Locale('pt', 'BR'), Locale('en', 'US')],
+          );
+        },
+      ),
     );
   }
 }
