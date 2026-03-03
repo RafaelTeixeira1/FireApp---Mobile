@@ -19,4 +19,12 @@ class AppColors {
 
   // 🔥 Botões secundários ou bordas
   static const Color strokeLight = Color(0xFFE5E5E5);
+
+  // 🌙 Cores do tema escuro
+  static const Color darkBackground = Color(0xFF121212);
+  static const Color darkSurface = Color(0xFF1E1E1E);
+  static const Color darkCard = Color(0xFF2C2C2C);
+  static const Color darkBorder = Color(0xFF3A3A3A);
+  static const Color lightText = Color(0xFFE0E0E0);
+  static const Color darkGreyText = Color(0xFFB0B0B0);
 }

@@ -8,14 +8,13 @@ class InformacoesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.close, color: Colors.black, size: 28),
+            icon: const Icon(Icons.close, color: Colors.white, size: 28),
             onPressed: () => Navigator.pop(context),
           ),
         ],

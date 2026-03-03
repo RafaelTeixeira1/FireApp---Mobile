@@ -27,7 +27,8 @@ dependencies:
   flutter_compass: ^0.8.0
   image_picker: ^1.1.2
   firebase_storage: ^13.0.4
-  
+  shared_preferences: ^2.2.2
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
