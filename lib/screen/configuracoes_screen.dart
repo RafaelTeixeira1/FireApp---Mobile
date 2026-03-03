@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../core/providers/theme_provider.dart';
+import '../core/navigation/app_routes.dart';
 import '../theme/app_colors.dart';
 
 /// Tela de Configurações do aplicativo
@@ -42,6 +43,21 @@ class ConfiguracoesScreen extends StatelessWidget {
                   inactiveTrackColor: Colors.grey.withValues(alpha: 0.3),
                   secondary: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
                 );
+              },
+            ),
+
+            const Divider(),
+
+            // Seção de Conta
+            _buildSectionHeader(context, 'Conta'),
+
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Meu Perfil'),
+              subtitle: const Text('Ver e editar dados pessoais'),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.perfil);
               },
             ),
 
