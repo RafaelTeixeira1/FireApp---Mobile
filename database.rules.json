@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "incendios": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["criadoEm", "criadoPor"],
+      "$id": {
+        ".validate": "newData.hasChildren(['descricao','nivelRisco','areaPoligono','latitude','longitude','criadoPor','criadoEm'])"
+      }
+    },
+    "usuarios": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}

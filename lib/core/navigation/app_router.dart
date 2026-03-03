@@ -14,6 +14,7 @@ import '../../screen/adicionar_mapa_screen.dart';
 import '../../screen/informacoes_screen.dart';
 import '../../screen/ajuda_comentarios_screen.dart';
 import '../../screen/configuracoes_screen.dart';
+import '../../screen/profile_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -56,6 +57,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => AjudaComentariosScreen());
       case AppRoutes.configuracoes:
         return MaterialPageRoute(builder: (_) => const ConfiguracoesScreen());
+      case AppRoutes.perfil:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
 
       default:
         return MaterialPageRoute(
