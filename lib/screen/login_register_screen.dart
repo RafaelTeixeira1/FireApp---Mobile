@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       await Auth().signInWithEmailAndPassword(
         email: _controllerEmail.text.trim(),
         password: _controllerPassword.text.trim(),
+        lembrarMe: lembrarMe,
       );
 
       debugPrint('✅ Login realizado com sucesso');
