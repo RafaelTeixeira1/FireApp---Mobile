@@ -13,6 +13,7 @@ import '../theme/app_text_styles.dart';
 import '../components/app_button.dart';
 import '../components/app_input.dart';
 import '../database/incendio_service.dart';
+import '../database/risco_service.dart';
 import '../model/incendio_model.dart';
 import '../core/notifications/notification_service.dart';
 import 'adicionar_mapa_screen.dart';
@@ -30,6 +31,7 @@ class _CadastroIncendioScreenState extends State<CadastroIncendioScreen> {
 
   final Location _location = Location();
   final IncendioService _incendioService = IncendioService();
+  final RiscoService _riscoService = RiscoService();
   final ImagePicker _imagePicker = ImagePicker();
 
   LatLng? _currentLocation;
@@ -302,10 +304,16 @@ class _CadastroIncendioScreenState extends State<CadastroIncendioScreen> {
       );
       debugPrint('👤 Usuário ID: ${user.uid}');
 
+      debugPrint('🌡️ [CadastroIncendio] Calculando nível de risco...');
+      final nivelRisco = await _riscoService.calcularNivelRisco(
+        coordenadasIncendio.latitude,
+        coordenadasIncendio.longitude,
+      );
+
       debugPrint('🔨 [CadastroIncendio] Criando modelo do incêndio...');
       final incendio = IncendioModel(
         descricao: descricaoController.text,
-        nivelRisco: 'Médio', // Será calculado automaticamente no futuro
+        nivelRisco: nivelRisco,
         areaPoligono: areaPoligono,
         criadoEm: DateTime.now().toIso8601String(),
         latitude: coordenadasIncendio.latitude,
