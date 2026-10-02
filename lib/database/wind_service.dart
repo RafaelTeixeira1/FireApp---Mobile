@@ -27,7 +27,9 @@ class WindService {
         '$_baseUrl?'
         'latitude=$latitude&'
         'longitude=$longitude&'
-        'current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m',
+        'current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m&'
+        // A API retorna km/h por padrão; WindData espera m/s
+        'wind_speed_unit=ms',
       );
 
       print('🌐 Requisitando dados de vento: $url');
